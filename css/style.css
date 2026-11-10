@@ -235,7 +235,7 @@ p { margin: 0 0 1em; }
   padding: 16px 12px 18px; text-align: center; box-shadow: var(--shadow); transition: transform .2s;
 }
 .price-card:hover { transform: translateY(-3px); }
-.price-thumb { width: 96px; height: 96px; margin: 0 auto 12px; border-radius: 22px; overflow: hidden; background: var(--brand-soft); }
+.price-thumb { width: 96px; height: 96px; margin: 0 auto 12px; border-radius: 50%; overflow: hidden; background: var(--brand-soft); }
 .price-thumb img { width: 100%; height: 100%; object-fit: cover; }
 .price-card h4 { margin: 0 0 4px; font-size: .98rem; font-weight: 700; line-height: 1.3; }
 .price-card .price { margin: 0; color: var(--muted); font-size: .95rem; }
