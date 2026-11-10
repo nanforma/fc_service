@@ -257,7 +257,7 @@ p { margin: 0 0 1em; }
 .price-table tbody tr + tr { border-top: 1px solid var(--line); }
 .price-table td:last-child, .price-table th:last-child { text-align: right; white-space: nowrap; font-weight: 800; }
 .row-item { display: flex; align-items: center; gap: 14px; font-weight: 700; }
-.row-item img { width: 56px; height: 56px; border-radius: 14px; object-fit: cover; flex: none; }
+.row-item img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; flex: none; }
 
 /* ===== Steps ===== */
 .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; counter-reset: step; }
