@@ -210,15 +210,6 @@ p { margin: 0 0 1em; }
 .header-phone + .lang { margin-left: 0; }
 @media (min-width: 900px) { .nav, .js .nav { margin-left: auto; } .lang { margin-left: 0; } }
 
-.lang-banner {
-  position: fixed; z-index: 55; top: calc(var(--header-h) + 8px); right: 16px; left: 16px; max-width: 380px; margin-left: auto;
-  background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px;
-  box-shadow: var(--shadow-lg); font-size: .95rem; font-weight: 600;
-}
-.lang-banner p { margin: 0 0 10px; }
-.lang-banner .btn-row { gap: 8px; flex-wrap: wrap; }
-.lang-banner button { font: inherit; cursor: pointer; }
-
 /* ===== Helpers ===== */
 .subhead { text-align: center; margin: 44px 0 20px; font-size: 1.3rem; }
 .link-arrow { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; text-decoration: none; margin-top: 10px; }
@@ -473,4 +464,9 @@ p { margin: 0 0 1em; }
   .price-table td:last-child, .price-table th:last-child { white-space: normal; min-width: 92px; font-size: .95rem; }
   .row-item { gap: 10px; }
   .row-item img, .row-ico { width: 44px; height: 44px; }
+}
+
+@media (min-width: 900px) {
+  .cards-grid .card--cta { grid-column: 1 / -1; flex-direction: row; align-items: center; justify-content: space-between; gap: 24px; }
+  .cards-grid .card--cta p { margin: 0; }
 }
