@@ -467,3 +467,8 @@ p { margin: 0 0 1em; }
 }
 
 .cards-feature + .cards-grid { margin-top: 24px; }
+
+@media (min-width: 900px) {
+  .cards-grid .card--cta { grid-column: 1 / -1; flex-direction: row; align-items: center; justify-content: space-between; gap: 24px; }
+  .cards-grid .card--cta p { margin: 0; }
+}
