@@ -38,7 +38,7 @@
     if (a) store(a.getAttribute('data-lang-switch'));
   });
 
-  // Плавна прокрутка до якоря (~1000 мс, з розгоном і гальмуванням)
+  // Плавна прокрутка до якоря (~1500 мс, з розгоном і гальмуванням)
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function ease(t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
   function smoothTo(y, ms) {
@@ -61,7 +61,7 @@
     e.preventDefault();
     var offset = header ? header.offsetHeight : 0;
     var y = target.getBoundingClientRect().top + window.pageYOffset - offset;
-    smoothTo(Math.max(0, y), 1000);
+    smoothTo(Math.max(0, y), 1500);
     if (history.replaceState) history.replaceState(null, '', a.getAttribute('href'));
   });
 })();
