@@ -259,7 +259,7 @@ p { margin: 0 0 1em; }
 .card--cta .btn { margin-top: 10px; }
 
 @media (min-width: 700px) {
-  .cards-feature { grid-template-columns: 1fr 1fr; }
+  .cards-feature { grid-template-columns: repeat(3, 1fr); }
   .cards-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (min-width: 960px) { .cards-grid { grid-template-columns: repeat(3, 1fr); } }
@@ -466,7 +466,4 @@ p { margin: 0 0 1em; }
   .row-item img, .row-ico { width: 44px; height: 44px; }
 }
 
-@media (min-width: 900px) {
-  .cards-grid .card--cta { grid-column: 1 / -1; flex-direction: row; align-items: center; justify-content: space-between; gap: 24px; }
-  .cards-grid .card--cta p { margin: 0; }
-}
+.cards-feature + .cards-grid { margin-top: 24px; }
