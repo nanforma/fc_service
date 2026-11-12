@@ -56,7 +56,7 @@ def _curdir():
 def A(name):
     """Шлях до ресурсу (img/css/js) відносно поточної сторінки."""
     if ABS:
-        return "/" + name
+        return name  # 404: шляхи від кореня сайту, <base> задається скриптом
     return "../" * (_curdir().count("/") - 1) + name
 
 
@@ -64,7 +64,7 @@ def H(key, frag="", lang=None):
     """Посилання на сторінку сайту відносно поточної."""
     target = purl(key, lang)
     if ABS:
-        r = target
+        r = target.lstrip("/") or "./"
     else:
         r = os.path.relpath(target, _curdir())
         r = "./" if r == "." else r.rstrip("/") + "/"
@@ -1158,14 +1158,18 @@ def build_404():
 <h2 class="h-ru">Страница не найдена</h2>
 <p>Возможно, ссылка устарела. Перейдите на главную или позвоните нам - поможем с заказом.</p>
 <div class="btn-row" style="justify-content:center">
-<a class="btn btn--primary" href="/">На головну</a>
-<a class="btn btn--ghost" href="/ru/">На главную (RU)</a>
+<a class="btn btn--primary" href="./">На головну</a>
+<a class="btn btn--ghost" href="ru/">На главную (RU)</a>
 <a class="btn btn--ghost" href="tel:{PHONE_TEL}">{ico("phone")} {PHONE_TXT}</a>
 </div>
 </div>
 </section>"""
     page = head("Сторінку не знайдено - Family Cleaning", "Такої сторінки не існує. Поверніться на головну Family Cleaning.", "home", noindex=True)
     page = page.replace(' data-alt="/ru/"', "")
+    base = ("<script>(function(){var l=location,b='/';if(l.protocol==='file:'){b=l.href.slice(0,l.href.lastIndexOf('/')+1);}"
+            "else if(/\\.github\\.io$/.test(l.hostname)){b='/'+(l.pathname.split('/')[1]||'')+'/';}"
+            "document.write('<base href=\"'+b+'\">');})();</script>")
+    page = page.replace('<meta charset="utf-8">', '<meta charset="utf-8">\n' + base, 1)
     page += "\n" + header("home") + f'\n<main id="main">\n\n{main}\n\n</main>\n' + footer()
     return page
 
