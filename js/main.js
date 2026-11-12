@@ -37,4 +37,31 @@
     var a = e.target.closest && e.target.closest('[data-lang-switch]');
     if (a) store(a.getAttribute('data-lang-switch'));
   });
+
+  // Плавна прокрутка до якоря (~1000 мс, з розгоном і гальмуванням)
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function ease(t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+  function smoothTo(y, ms) {
+    var start = window.pageYOffset, dist = y - start, t0 = null;
+    document.documentElement.style.scrollBehavior = 'auto';
+    function step(ts) {
+      if (t0 === null) t0 = ts;
+      var p = Math.min((ts - t0) / ms, 1);
+      window.scrollTo(0, start + dist * ease(p));
+      if (p < 1) requestAnimationFrame(step);
+      else document.documentElement.style.scrollBehavior = '';
+    }
+    requestAnimationFrame(step);
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('.hero-scroll');
+    if (!a || reduce) return;
+    var target = document.querySelector(a.getAttribute('href'));
+    if (!target) return;
+    e.preventDefault();
+    var offset = header ? header.offsetHeight : 0;
+    var y = target.getBoundingClientRect().top + window.pageYOffset - offset;
+    smoothTo(Math.max(0, y), 1000);
+    if (history.replaceState) history.replaceState(null, '', a.getAttribute('href'));
+  });
 })();
